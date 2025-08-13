@@ -15,10 +15,11 @@ const Logo = () => {
           <div className="w-full h-full bg-premium-dark rounded-full flex items-center justify-center overflow-hidden">
             {!imageError ? (
               <img
-                src={process.env.PUBLIC_URL + "/logo.png"}
+                src="https://i.postimg.cc/Yvt36mMX/logo.png"
                 alt="Premium Trading Logo"
                 className="w-16 h-16 object-contain rounded-full"
                 onError={handleImageError}
+                onLoad={() => console.log('Logo loaded successfully')}
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">
