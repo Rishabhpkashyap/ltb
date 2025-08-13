@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+const loadingSteps = [
+  { text: "Connecting to Server", duration: 800 },
+  { text: "Authenticating Session", duration: 600 },
+  { text: "Fetching Chart Data", duration: 900 },
+  { text: "Analyzing Market Trends", duration: 1200 },
+  { text: "Processing Technical Indicators", duration: 800 },
+  { text: "Calculating Risk Factors", duration: 700 },
+  { text: "Generating Signal", duration: 600 }
+];
+
 const LoadingStatus = ({ isActive, onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
-
-  const loadingSteps = [
-    { text: "Connecting to Server", duration: 800 },
-    { text: "Authenticating Session", duration: 600 },
-    { text: "Fetching Chart Data", duration: 900 },
-    { text: "Analyzing Market Trends", duration: 1200 },
-    { text: "Processing Technical Indicators", duration: 800 },
-    { text: "Calculating Risk Factors", duration: 700 },
-    { text: "Generating Signal", duration: 600 }
-  ];
 
   useEffect(() => {
     if (!isActive) {
