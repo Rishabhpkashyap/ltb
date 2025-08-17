@@ -4,6 +4,8 @@ A professional, dark-themed trading signal interface built with React and Tailwi
 
 ## Features
 
+- **Firebase Authentication**: Secure user login/signup with email/password
+- **Protected Routes**: Access control for authenticated users only
 - **Telegram Integration**: Popup modal to join Telegram group
 - **Platform Selection**: Support for 6 major trading platforms
 - **Asset Selection**: 14 OTC currency pairs
@@ -18,6 +20,7 @@ A professional, dark-themed trading signal interface built with React and Tailwi
 
 - Node.js (v14 or higher)
 - npm or yarn
+- Firebase project with Authentication enabled
 
 ### Installation
 
@@ -27,12 +30,22 @@ A professional, dark-themed trading signal interface built with React and Tailwi
    npm install
    ```
 
-3. Start the development server:
+3. Set up Firebase:
+   - Create a Firebase project at [https://console.firebase.google.com](https://console.firebase.google.com)
+   - Enable Authentication with Email/Password provider
+   - Copy your Firebase config from Project Settings
+
+4. Environment Variables:
+   - Copy `.env.example` to `.env`
+   - Fill in your Firebase configuration values
+   - For Vercel deployment, add these as environment variables in your Vercel dashboard
+
+5. Start the development server:
    ```bash
    npm start
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+6. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Building for Production
 

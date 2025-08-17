@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import PopupModal from './components/PopupModal';
 import Header from './components/Header';
 import StatusIndicator from './components/StatusIndicator';
@@ -37,9 +39,9 @@ const ASSETS = [
   'USD/BDT (OTC)'
 ];
 
-const TIMEFRAMES = ['1m', '2m', '3m', '5m', '15m'];
+const TIMEFRAMES = ['5s', '10s', '1m', '2m', '3m', '5m', '15m'];
 
-function App() {
+function TradingApp() {
   const [showPopup, setShowPopup] = useState(false);
   const [platform, setPlatform] = useState('');
   const [asset, setAsset] = useState('');
@@ -200,6 +202,16 @@ function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <ProtectedRoute>
+        <TradingApp />
+      </ProtectedRoute>
+    </AuthProvider>
   );
 }
 

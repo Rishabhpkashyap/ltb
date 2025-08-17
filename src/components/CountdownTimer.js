@@ -6,10 +6,16 @@ const CountdownTimer = ({ timeframe, onExpire, isActive }) => {
   // Convert timeframe to seconds
   const getInitialTime = (timeframe) => {
     switch (timeframe) {
+      case '5s':
+        return 5; // 5 seconds
+      case '10s':
+        return 10; // 10 seconds
       case '1m':
+        return 60; // 1 minute
       case '2m':
+        return 120; // 2 minutes
       case '3m':
-        return 60; // 1 minute for 1m, 2m, 3m
+        return 180; // 3 minutes
       case '5m':
         return 300; // 5 minutes
       case '15m':
@@ -51,10 +57,19 @@ const CountdownTimer = ({ timeframe, onExpire, isActive }) => {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
+  // Show different format for seconds-only timeframes
+  const isSecondsOnly = timeframe === '5s' || timeframe === '10s';
+
   return (
     <div className="text-center mt-4">
       <div className="text-3xl font-mono font-bold text-white">
-        {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+        {isSecondsOnly ? 
+          `${timeLeft}s` : 
+          `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+        }
+      </div>
+      <div className="text-sm text-gray-400 mt-1">
+        Time remaining for {timeframe} signal
       </div>
     </div>
   );
