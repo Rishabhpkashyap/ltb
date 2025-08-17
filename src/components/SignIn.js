@@ -6,14 +6,13 @@ import Logo from './Logo';
 function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isSignUp, setIsSignUp] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [resetEmail, setResetEmail] = useState('');
     const [showReset, setShowReset] = useState(false);
     const [resetMessage, setResetMessage] = useState('');
 
-    const { login, signup, resetPassword } = useAuth();
+    const { login, resetPassword } = useAuth();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -32,12 +31,7 @@ function SignIn() {
         try {
             setError('');
             setLoading(true);
-
-            if (isSignUp) {
-                await signup(email, password);
-            } else {
-                await login(email, password);
-            }
+            await login(email, password);
         } catch (error) {
             setError(getErrorMessage(error.code));
         }
@@ -73,10 +67,6 @@ function SignIn() {
                 return 'Incorrect password. Please check your password and try again.';
             case 'auth/invalid-credential':
                 return 'Invalid email or password. Please check your credentials.';
-            case 'auth/email-already-in-use':
-                return 'An account with this email already exists. Please use a different email.';
-            case 'auth/weak-password':
-                return 'Password is too weak. Please use at least 6 characters.';
             case 'auth/invalid-email':
                 return 'Invalid email format. Please enter a valid email address.';
             case 'auth/user-disabled':
@@ -169,10 +159,10 @@ function SignIn() {
                     <div className="text-center mb-8">
                         <Logo />
                         <h2 className="text-2xl font-bold text-white mb-2">
-                            {isSignUp ? 'Create Account' : 'Welcome Back'}
+                            Welcome Back
                         </h2>
                         <p className="text-gray-400">
-                            {isSignUp ? 'Sign up to access Lady Trader Bot' : 'Sign in to your account'}
+                            Sign in to your account
                         </p>
                     </div>
 
@@ -220,7 +210,7 @@ function SignIn() {
                                 disabled={loading}
                                 className="premium-button w-full py-3 px-4 rounded-lg text-white font-semibold transition-all duration-300 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {loading ? 'Please wait...' : (isSignUp ? 'Create Account' : 'Sign In')}
+                                {loading ? 'Please wait...' : 'Sign In'}
                             </button>
                         </form>
 
